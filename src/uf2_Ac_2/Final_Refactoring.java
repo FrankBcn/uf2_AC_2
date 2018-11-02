@@ -16,7 +16,7 @@ public class Final_Refactoring {
 
 }
 
-class Calcular {
+class Calcular { // CLASE INTERNA 
 	
 	Scanner entrada = new Scanner(System.in); // OBJETO DE TIPO SCANNER PARA INTRODUCIR DATOS POR TECLADO
 	
@@ -27,6 +27,9 @@ class Calcular {
 	double radio;
 	double diagonalMayor;
 	double diagonalMenor;
+	double perimetro;
+	double apotema;
+	int numLados;
 	private int opcion; 
 	
 //------ MÉTODOS PARA LA CABECERA Y EL MENÚ -----------------------------------------------------------------------------------------------------
@@ -42,15 +45,25 @@ class Calcular {
     public void menu() {
     	
     	System.out.println();
-		System.out.println(" - A continuación verás un menú. Escoge una Opción, por favor:");
+		System.out.println(" - A continuación se deslpegará un menú con varias opciones:");
 		System.out.println();
-		
-		System.out.println("\n 1: Cuadrado \n 2: Triángulo \n 3: Rectángulo \n 4: Círculo \n 5: Rombo \n");
 		System.out.println();
+
 		
+		do {
+			
+		System.out.println();
+		System.out.println("----------------");
+		System.out.println(" POLÍGONOS      |");
+		System.out.println("----------------");
+		System.out.println("\n 1: Cuadrado \n 2: Triángulo \n 3: Rectángulo \n 4: Círculo \n 5: Rombo \n 6: Polígono Regular \n 7: Escoger otra opción \n 8 : SALIR");
+		System.out.println();
+		System.out.print(" Escoja una opción por favor:  ");
 	    opcion = entrada.nextInt();
-		
-		
+	    
+		System.out.println();
+		System.out.println();
+
 		switch(opcion) {
 		
 		case 1:
@@ -73,73 +86,122 @@ class Calcular {
 			System.out.println(" Esta opción te permite calcular el área de un Rombo: " + "\n");
 			aRombo();
 			break;
+		case 6:
+			System.out.println(" Esta opción te permite calcular el área de un Polígono Regular: " + "\n");
+			aRegular();
+			break;
+		case 7:
+			System.out.println("Escoge una opción: ");
+			opciones();
+			break;
+		case 8:
+			System.out.println("Hasta la próxima, gracias por usar la aplicación");
+			break;
 		default:
 			System.out.println("La Opción que has escogido no existe.");
 			break;
-		}
+		}	
+		} while(opcion!=8);
     }
     
 //------ MÉTODOS PARA EL CÁLCULO DE LAS AREAS ---------------------------------------------------------------------------------------------------
 	
 	public void aCuadrado() {
 				
-		System.out.println("** El área del Cuadrado se obtiene multiplicando su lado al cuadrado (Sus lados son iguales) **" + "\n");
-		System.out.println("Introduce un lado, por favor: " + "\n");
+		System.out.println(" ** El área del Cuadrado se obtiene multiplicando su lado al cuadrado (Sus lados son iguales) **" + "\n");
+		System.out.println(" Introduce un lado, por favor: " + "\n");
 		lado = entrada.nextDouble();
 		
 		area = Math.pow(lado, 2);
-		System.out.println("                                                           EL AREA DE LA FIGURA ES: " + area);
+		System.out.println("                                                            ** EL AREA DE LA FIGURA  ES: " + area + " **");
 	}
 	
 	public void aTriangulo() {
 				
-		System.out.println("** El área del Triángulo se obtiene multiplicando la base por la altura y dividiéndo el resultado por 2**" + "\n");
-		System.out.println("Introduce la base, por favor: " + "\n");
+		System.out.println(" ** El área del Triángulo se obtiene multiplicando la base por la altura y dividiéndo el resultado por 2**" + "\n");
+		System.out.println(" Introduce la base, por favor: " + "\n");
 		base = entrada.nextDouble();
-		System.out.println("Introduce la altura, por favor: " + "\n");
+		System.out.println(" Introduce la altura, por favor: " + "\n");
 		altura = entrada.nextDouble();
 		
 		area = base * altura /2; // RESULTADO DE LA OPERACIÓN. ÁREA
 		System.out.println();
-		System.out.println("                                                           EL AREA DE LA FIGURA ES: " + area);
+		System.out.println("                                                            ** EL AREA DE LA FIGURA  ES: " + area + " **");
 	}
 	
 	public void aRectangulo() { 
 				
-		System.out.println("** El área del rectángulo se obtiene multiplicando la base  por la altura **" + "\n");
-		System.out.println("Introduce la base, por favor: " + "\n");
+		System.out.println(" ** El área del rectángulo se obtiene multiplicando la base  por la altura **" + "\n");
+		System.out.println(" Introduce la base, por favor: " + "\n");
 		base = entrada.nextDouble();
-		System.out.println("Introduce la altura, por favor: " + "\n");
+		System.out.println(" Introduce la altura, por favor: " + "\n");
 		altura = entrada.nextDouble();
 		
 		area = base * altura; // RESULTADO DE LA OPERACIÓN. ÁREA
 		System.out.println();
-		System.out.println("                                                           EL AREA DE LA FIGURA  ES: " + area);
+		System.out.println("                                                            ** EL AREA DE LA FIGURA  ES: " + area + " **");
 	}
 	
 	public void aCirculo() {
 				
-		System.out.println("** El área del Círculo se obtiene multiplicando la constante matemática Pi por el radio"
+		System.out.println(" ** El área del Círculo se obtiene multiplicando la constante matemática Pi por el radio"
 				+ " del círculo al cuadrado **" + "\n");
-		System.out.println("Introduce el radio, por favor: " + "\n");
+		System.out.println(" Introduce el radio, por favor: " + "\n");
 		radio = entrada.nextDouble();
 		
 		area = Math.round(Math.PI * (Math.pow(radio, 2)));
 		
-		System.out.println("                                                           EL AREA DE LA FIGURA  ES: " + area);
+		System.out.println("                                                            ** EL AREA DE LA FIGURA  ES: " + area + " **");
 	}
 	
 	public void aRombo() {
 		
-		System.out.println("** El área del Rombo se obtiene multiplicando su Diagonal  Mayor por su Diagonal Menor"
+		System.out.println(" ** El área del Rombo se obtiene multiplicando su Diagonal  Mayor por su Diagonal Menor"
 				+ " y dividiendo el resultado entre 2 **" + "\n");
 		System.out.println("Introduce el valor correspondiente a la Diagonal Mayor, por favor:");
 		diagonalMayor = entrada.nextDouble();
-		System.out.println("Introduce el valor correspondiente a la Diagonal Menor, por favor:");
+		System.out.println(" Introduce el valor correspondiente a la Diagonal Menor, por favor:");
 		diagonalMenor = entrada.nextDouble();
 		
 		area = diagonalMayor * diagonalMenor/2;
 		
-		System.out.println("                                                           EL AREA DE LA FIGURA  ES: " + area);
+		System.out.println("                                                           ** EL AREA DE LA FIGURA  ES: " + area + " **");
+	}
+	
+	public void aRegular() {
+		
+		System.out.println(" El área de un polígono regular se calcula multiplicando el Perímetro por la Apotema y diviendo el resultado entre dos."
+				);
+		System.out.print(" Introduce el número de lados que tiene la figura, por favor: ");
+		numLados = entrada.nextInt();
+		System.out.println("");
+		System.out.print(" Introduce el valor de uno de sus lados, por favor: ");
+		lado = entrada.nextDouble();
+		System.out.println("");
+		System.out.print(" Introduce el valor de la Apotema, por favor: ");
+		apotema = entrada.nextDouble();
+		
+		perimetro = lado*numLados; 
+		
+		area = (perimetro*apotema)/2;
+		System.out.println("                                                            ** EL AREA DE LA FIGURA  ES: " + area + " **");
+		System.out.println("");
+		System.out.println("");
+
+	}
+	
+	public void opciones() {
+		
+		System.out.println();
+		System.out.println("----------------");
+		System.out.println(" POLÍGONOS      |");
+		System.out.println("----------------");
+		System.out.println("\n 1: Cuadrado \n 2: Triángulo \n 3: Rectángulo \n 4: Círculo \n 5: Rombo \n 6: Polígono Regular \n 7: Escoger otra opción \n 8 : SALIR");
+		System.out.println();
+		System.out.print(" Escoja una opción por favor:  ");
+	    opcion = entrada.nextInt();
+	    
+		System.out.println();
+		System.out.println();
 	}
 }
